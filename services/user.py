@@ -2,7 +2,10 @@ from datetime import datetime, timezone
 from sqlmodel import Session, select
 from fastapi import HTTPException, status
 
-from ..models.user import User, UserUpdate
+try:
+    from ..models.user import User, UserUpdate
+except ImportError:
+    from models.user import User, UserUpdate
 
 
 class UserService:

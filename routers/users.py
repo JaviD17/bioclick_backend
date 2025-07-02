@@ -1,12 +1,21 @@
 from fastapi import APIRouter, HTTPException, status
 
-from ..models.user import UserPublic, UserUpdate, UserPasswordChange
-from ..models.link import LinkPublic
-from ..dependencies import CurrentActiveUser
-from ..services.user import UserService
-from ..services.link import LinkService
-from ..dependencies import SessionDep
-from ..utils.security import verify_password, get_password_hash
+try:
+    from ..models.user import UserPublic, UserUpdate, UserPasswordChange
+    from ..models.link import LinkPublic
+    from ..dependencies import CurrentActiveUser
+    from ..services.user import UserService
+    from ..services.link import LinkService
+    from ..dependencies import SessionDep
+    from ..utils.security import verify_password, get_password_hash
+except ImportError:
+    from models.user import UserPublic, UserUpdate, UserPasswordChange
+    from models.link import LinkPublic
+    from dependencies import CurrentActiveUser
+    from services.user import UserService
+    from services.link import LinkService
+    from dependencies import SessionDep
+    from utils.security import verify_password, get_password_hash
 
 router = APIRouter(prefix="/users", tags=["users"])
 

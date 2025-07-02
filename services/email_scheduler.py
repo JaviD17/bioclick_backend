@@ -1,10 +1,17 @@
 from datetime import datetime, timedelta, timezone
 from sqlmodel import Session, select
 from typing import Dict, Any
-from ..models.user import User
-from ..models.email import EmailLog, EmailType
-from ..services.analytics import AnalyticsService
-from .email import EmailService
+
+try:
+    from ..models.user import User
+    from ..models.email import EmailLog, EmailType
+    from ..services.analytics import AnalyticsService
+    from ..services.email import EmailService
+except ImportError:
+    from models.user import User
+    from models.email import EmailLog, EmailType
+    from services.analytics import AnalyticsService
+    from services.email import EmailService
 
 
 class EmailScheduler:

@@ -1,7 +1,11 @@
 from sqlmodel import create_engine, Session, SQLModel
 from typing import Annotated
 from fastapi import Depends
-from .config import settings
+
+try:
+    from .config import settings
+except ImportError:
+    from config import settings
 
 # Create engine with connection pooling
 engine = create_engine(

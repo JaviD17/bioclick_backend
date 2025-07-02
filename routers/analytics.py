@@ -1,7 +1,14 @@
 from fastapi import APIRouter, Query
-from ..models.analytics import AnalyticsResponse, GeographicResponse
-from ..dependencies import CurrentActiveUser, SessionDep
-from ..services.analytics import AnalyticsService
+
+try:
+    from ..models.analytics import AnalyticsResponse, GeographicResponse
+    from ..dependencies import CurrentActiveUser, SessionDep
+    from ..services.analytics import AnalyticsService
+except ImportError:
+    from models.analytics import AnalyticsResponse, GeographicResponse
+    from dependencies import CurrentActiveUser, SessionDep
+    from services.analytics import AnalyticsService
+
 
 router = APIRouter(prefix="/analytics", tags=["analytics"])
 

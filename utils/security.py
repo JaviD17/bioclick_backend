@@ -1,7 +1,11 @@
 from datetime import datetime, timedelta, timezone
 import jwt
 from passlib.context import CryptContext
-from ..config import settings
+
+try:
+    from ..config import settings
+except ImportError:
+    from config import settings
 
 # Password hashing context
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

@@ -5,18 +5,33 @@ import user_agents
 import geoip2.database
 import geoip2.errors
 
-from ..models.analytics import (
-    ClickEvent,
-    ClickEventCreate,
-    DailyStats,
-    LinkStats,
-    DeviceStats,
-    CountryStats,
-    CityStats,
-    GeographicResponse,
-    AnalyticsResponse,
-)
-from ..models.link import Link
+try:
+
+    from ..models.analytics import (
+        ClickEvent,
+        ClickEventCreate,
+        DailyStats,
+        LinkStats,
+        DeviceStats,
+        CountryStats,
+        CityStats,
+        GeographicResponse,
+        AnalyticsResponse,
+    )
+    from ..models.link import Link
+except ImportError:
+    from models.analytics import (
+        ClickEvent,
+        ClickEventCreate,
+        DailyStats,
+        LinkStats,
+        DeviceStats,
+        CountryStats,
+        CityStats,
+        GeographicResponse,
+        AnalyticsResponse,
+    )
+    from models.link import Link
 
 
 class AnalyticsService:

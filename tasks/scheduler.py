@@ -2,9 +2,14 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from sqlmodel import Session
 from datetime import datetime
-from ..database import engine
-from ..services.email_scheduler import EmailScheduler
 import atexit
+
+try:
+    from ..database import engine
+    from ..services.email_scheduler import EmailScheduler
+except ImportError:
+    from database import engine
+    from services.email_scheduler import EmailScheduler
 
 
 def create_scheduler():

@@ -3,11 +3,19 @@ from fastapi.responses import RedirectResponse
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
-from ..models.link import LinkCreate, LinkUpdate, LinkPublic
-from ..dependencies import CurrentActiveUser, SessionDep
-from ..services.link import LinkService
-from ..services.analytics import AnalyticsService
-from ..utils.helpers import get_client_ip
+try:
+    from ..models.link import LinkCreate, LinkUpdate, LinkPublic
+    from ..dependencies import CurrentActiveUser, SessionDep
+    from ..services.link import LinkService
+    from ..services.analytics import AnalyticsService
+    from ..utils.helpers import get_client_ip
+except ImportError:
+    from models.link import LinkCreate, LinkUpdate, LinkPublic
+    from dependencies import CurrentActiveUser, SessionDep
+    from services.link import LinkService
+    from services.analytics import AnalyticsService
+    from utils.helpers import get_client_ip
+
 
 router = APIRouter(prefix="/links", tags=["links"])
 limiter = Limiter(key_func=get_remote_address)

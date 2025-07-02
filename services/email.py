@@ -2,8 +2,13 @@ import resend
 from typing import Dict, Any
 from datetime import datetime, timezone, timedelta
 from sqlmodel import Session, select
-from ..config import settings
-from ..models.email import EmailLog, EmailType
+
+try:
+    from ..config import settings
+    from ..models.email import EmailLog, EmailType
+except ImportError:
+    from config import settings
+    from models.email import EmailLog, EmailType
 
 resend.api_key = settings.resend_api_key
 

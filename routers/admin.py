@@ -1,7 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session
-from ..database import get_session
-from ..services.email_scheduler import EmailScheduler
+
+try:
+    from ..database import get_session
+    from ..services.email_scheduler import EmailScheduler
+except ImportError:
+    from database import get_session
+    from services.email_scheduler import EmailScheduler
+
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 

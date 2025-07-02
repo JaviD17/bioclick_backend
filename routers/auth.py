@@ -4,15 +4,28 @@ from typing import Annotated
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
-from ..models.auth import (
-    Token,
-    UserLogin,
-    UserRegister,
-    PasswordResetRequest,
-    PasswordResetConfirm,
-)
-from ..models.user import UserPublic
-from ..dependencies import AuthServiceDep
+try:
+
+    from ..models.auth import (
+        Token,
+        UserLogin,
+        UserRegister,
+        PasswordResetRequest,
+        PasswordResetConfirm,
+    )
+    from ..models.user import UserPublic
+    from ..dependencies import AuthServiceDep
+except ImportError:
+    from models.auth import (
+        Token,
+        UserLogin,
+        UserRegister,
+        PasswordResetRequest,
+        PasswordResetConfirm,
+    )
+    from models.user import UserPublic
+    from dependencies import AuthServiceDep
+
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 limiter = Limiter(key_func=get_remote_address)

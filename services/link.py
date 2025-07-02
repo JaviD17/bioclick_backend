@@ -2,7 +2,10 @@ from sqlmodel import Session, select
 from fastapi import HTTPException, status
 from datetime import datetime, timezone
 
-from ..models.link import Link, LinkCreate, LinkUpdate
+try:
+    from ..models.link import Link, LinkCreate, LinkUpdate
+except ImportError:
+    from models.link import Link, LinkCreate, LinkUpdate
 
 
 class LinkService:

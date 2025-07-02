@@ -2,10 +2,16 @@ from typing import Annotated
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
-from .database import SessionDep
-from .models.user import User
-from .services.auth import AuthService
-from .utils.security import verify_token
+try:
+    from .database import SessionDep
+    from .models.user import User
+    from .services.auth import AuthService
+    from .utils.security import verify_token
+except ImportError:
+    from database import SessionDep
+    from models.user import User
+    from services.auth import AuthService
+    from utils.security import verify_token
 
 # OAuth2 scheme for token-based authentication
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")

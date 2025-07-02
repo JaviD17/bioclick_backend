@@ -3,18 +3,32 @@ import secrets
 from sqlmodel import Session, select
 from fastapi import HTTPException, status
 
-from ..models.user import User, UserCreate
-from ..models.auth import (
-    Token,
-    UserLogin,
-    UserRegister,
-    PasswordResetRequest,
-    PasswordResetConfirm,
-    PasswordResetToken,
-)
-from ..utils.security import verify_password, get_password_hash, create_access_token
-from ..config import settings
-from .email import EmailService
+try:
+    from ..models.user import User, UserCreate
+    from ..models.auth import (
+        Token,
+        UserLogin,
+        UserRegister,
+        PasswordResetRequest,
+        PasswordResetConfirm,
+        PasswordResetToken,
+    )
+    from ..utils.security import verify_password, get_password_hash, create_access_token
+    from ..config import settings
+    from ..services.email import EmailService
+except ImportError:
+    from models.user import User, UserCreate
+    from models.auth import (
+        Token,
+        UserLogin,
+        UserRegister,
+        PasswordResetRequest,
+        PasswordResetConfirm,
+        PasswordResetToken,
+    )
+    from utils.security import verify_password, get_password_hash, create_access_token
+    from config import settings
+    from services.email import EmailService
 
 
 class AuthService:
