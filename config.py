@@ -32,7 +32,9 @@ class Settings(BaseSettings):
     )
 
     # Trusted hosts for production
-    allowed_hosts: str = "localhost,127.0.0.1,biotap-backend.onrender.com,*.vercel.app"
+    allowed_hosts: str = (
+        "localhost,127.0.0.1,biotap-backend.onrender.com,*.vercel.app,*.onrender.com"
+    )
 
     # Rate Limiting
     rate_limit_per_minute: int = 60

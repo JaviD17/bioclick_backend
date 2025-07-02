@@ -35,12 +35,15 @@ async def lifespan(app: FastAPI):
     # Start background scheduler (only in production)
     if not settings.debug:
         try:
-            from .tasks.scheduler import start_scheduler
+            try:
+                from .tasks.scheduler import start_scheduler
+            except ImportError:
+                from tasks.scheduler import start_scheduler
 
             start_scheduler()
             print(f"📆 Background email scheduler started")
         except ImportError:
-            print("⚠️ Scheduler not available - install apscheduler")
+            print("⚠️ Scheduler module not available")
         except Exception as e:
             print(f"⚠️ Failed to start scheduler: {e}")
     else:
@@ -54,7 +57,10 @@ async def lifespan(app: FastAPI):
     # Stop the background scheduler
     if not settings.debug:
         try:
-            from .tasks.scheduler import stop_scheduler
+            try:
+                from .tasks.scheduler import stop_scheduler
+            except ImportError:
+                from tasks.scheduler import stop_scheduler
 
             stop_scheduler()
             print("📆 Background scheduler stopped")
