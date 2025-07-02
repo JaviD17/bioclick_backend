@@ -28,13 +28,11 @@ class Settings(BaseSettings):
 
     # CORS Origins (production-ready)
     cors_origins: str = (
-        "http://localhost:3000,http://localhost:5173,https://biotap-backend.onrender.com,https://www.biotap-backend.onrender.com",
+        "http://localhost:3000,http://localhost:5173,https://biotap-backend.onrender.com",
     )
 
     # Trusted hosts for production
-    allowed_hosts: str = (
-        "localhost,127.0.0.1,biotap-backend.onrender.com,www.biotap-backend.onrender.com,*.vercel.app"
-    )
+    allowed_hosts: str = "localhost,127.0.0.1,biotap-backend.onrender.com,*.vercel.app"
 
     # Rate Limiting
     rate_limit_per_minute: int = 60
