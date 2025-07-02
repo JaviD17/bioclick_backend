@@ -8,9 +8,17 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 import time
 
-from .config import settings
-from .database import create_db_and_tables
-from .routers import auth, users, links, analytics, admin
+# Smart imports - try relative first, then absolute
+try:
+    # Try relative import (for fastapi dev)
+    from .config import settings
+    from .database import create_db_and_tables
+    from .routers import auth, users, links, analytics, admin
+except ImportError:
+    # Fall back to absolute imports (for gunicorn in production)
+    from config import settings
+    from database import create_db_and_tables
+    from routers import auth, users, links, analytics, admin
 
 # Rate limiting
 limiter = Limiter(key_func=get_remote_address)
