@@ -27,21 +27,14 @@ class Settings(BaseSettings):
     password_reset_expire_minutes: int = 30
 
     # CORS Origins (production-ready)
-    cors_origins: list[str] = [
-        "http://localhost:3000",
-        "http://localhost:5173",
-        "https://yourdomain.com",
-        "https://www.yourdomain.com",
-    ]
+    cors_origins: str = (
+        "http://localhost:3000,http://localhost:5173,https://yourdomain.com,https://www.yourdomain.com",
+    )
 
     # Trusted hosts for production
-    allowed_hosts: list[str] = [
-        "localhost",
-        "127.0.0.1",
-        "yourdomain.com",
-        "www.yourdomain.com",
-        "*.vercel.app,",  # Vercel preview deployments
-    ]
+    allowed_hosts: str = (
+        "localhost,127.0.0.1,yourdomain.com,www.yourdomain.com,*.vercel.app"
+    )
 
     # Rate Limiting
     rate_limit_per_minute: int = 60
@@ -51,6 +44,16 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
+
+    @property
+    def cors_origins_list(self) -> list[str]:
+        """Convert CORS origins string to list"""
+        return [origin.strip() for origin in self.cors_origins.split(",")]
+
+    @property
+    def allowed_hosts_list(self) -> list[str]:
+        """Convert allowed hosts string to list"""
+        return [host.strip() for host in self.allowed_hosts.split(",")]
 
     @property
     def is_production(self) -> bool:
