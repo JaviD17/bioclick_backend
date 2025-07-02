@@ -132,7 +132,7 @@ app.include_router(admin.router)
 
 @app.get("/")
 @limiter.limit("30/minute")
-async def root():
+async def root(request: Request):
     """Root endpoint with rate limiting"""
     return {
         "message": "Welcome to BioTap API",

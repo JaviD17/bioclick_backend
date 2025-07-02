@@ -91,7 +91,7 @@ async def delete_link(
 # Public endpoints with rate limiting
 @router.post("/{link_id}/click", response_model=LinkPublic)
 @limiter.limit("100/minute")  # Limit clicks to 100 per minute
-async def track_click(link_id: int, session: SessionDep):
+async def track_click(request: Request, link_id: int, session: SessionDep):
     """Track a click on a link (public endpoint) with rate limiting"""
     link_service = LinkService(session)
     return link_service.increment_click_count(link_id)
@@ -99,7 +99,7 @@ async def track_click(link_id: int, session: SessionDep):
 
 @router.get("/{link_id}/redirect")
 @limiter.limit("100/minute")  # Limit redirects to 100 per minute
-async def click_and_redirect(link_id: int, request: Request, session: SessionDep):
+async def click_and_redirect(request: Request, link_id: int, session: SessionDep):
     """Track click and redirect to the actual URL (public endpoint) with rate limiting"""
     link_service = LinkService(session)
     analytics_service = AnalyticsService(session)
@@ -130,7 +130,7 @@ async def click_and_redirect(link_id: int, request: Request, session: SessionDep
 
 @router.get("/public/{username}", response_model=list[LinkPublic])
 @limiter.limit("30/minute")  # Limit public user profile to 30 requests per minute
-async def get_public_user_profile(username: str, session: SessionDep):
+async def get_public_user_profile(request: Request, username: str, session: SessionDep):
     """Get public view of user's active links (public endpoint) with rate limiting"""
     link_service = LinkService(session)
     return link_service.get_public_user_links(username)
