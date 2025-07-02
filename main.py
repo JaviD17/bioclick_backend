@@ -20,7 +20,7 @@ limiter = Limiter(key_func=get_remote_address)
 async def lifespan(app: FastAPI):
     """Application lifespan events"""
     # startup
-    print("🚀 Starting up Linktree Clone API...")
+    print("🚀 Starting up BioTap API...")
     create_db_and_tables()
     print("✅ Database tables created successfully")
 
@@ -41,7 +41,7 @@ async def lifespan(app: FastAPI):
     yield
 
     # Shutdown
-    print("🛑 Shutting down Linktree Clone API...")
+    print("🛑 Shutting down BioTap API...")
 
     # Stop the background scheduler
     if not settings.debug:
@@ -58,7 +58,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title=settings.app_name,
     debug=settings.debug,
-    description="A linktree clone built with FastAPI and SQLModel",
+    description="BioTap built with FastAPI and SQLModel",
     version="1.0.0",
     docs_url="/docs" if settings.debug else None,
     redoc_url="/redoc" if settings.debug else None,
@@ -135,7 +135,7 @@ app.include_router(admin.router)
 async def root():
     """Root endpoint with rate limiting"""
     return {
-        "message": "Welcome to Linktree Clone API",
+        "message": "Welcome to BioTap API",
         "version": "1.0.0",
         "docs": "/docs" if settings.debug else "Not available in production",
         "redoc": "/redoc" if settings.debug else "Not available in production",
