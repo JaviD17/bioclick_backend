@@ -38,7 +38,7 @@ Describe any configuration steps, environment variables, or settings users need 
 
 ```zsh
 # Configure .env - look at .env.example for guidance
-export API_KEY=your_api_key
+DATABASE_URL=postgresql://user:password@host:port/dbname
 ```
 
 ## Contributing
