@@ -1,4 +1,4 @@
-# BioClick
+# Welcome to BioClick!
 
 ## Description
 
