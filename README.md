@@ -1,3 +1,3 @@
-# Welcome to api.BioTap.xyz!
+# Welcome to api.BioClick.xyz!
 
 This API is built with FastAPI!
