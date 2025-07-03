@@ -27,14 +27,10 @@ class Settings(BaseSettings):
     password_reset_expire_minutes: int = 30
 
     # CORS Origins (production-ready)
-    cors_origins: str = (
-        "http://localhost:3000,http://localhost:5173,https://biotap-backend.onrender.com",
-    )
+    cors_origins: str = "http://localhost:3000,http://localhost:5173,https://biotap-backend.onrender.com"
 
     # Trusted hosts for production
-    allowed_hosts: str = (
-        "localhost,127.0.0.1,biotap-backend.onrender.com,*.vercel.app,*.onrender.com"
-    )
+    allowed_hosts: str = "localhost,127.0.0.1,biotap-backend.onrender.com,*.vercel.app,*.onrender.com"
 
     # Rate Limiting
     rate_limit_per_minute: int = 60

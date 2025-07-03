@@ -84,7 +84,10 @@ class LinkService:
 
     def get_public_user_links(self, username: str) -> list[Link]:
         """Get active links for a user (public view)"""
-        from ..models.user import User
+        try:
+            from ..models.user import User
+        except ImportError:
+            from models.user import User
 
         statement = select(User).where(User.username == username)
         user = self.session.exec(statement).first()
