@@ -59,5 +59,5 @@ This project is licensed under the [License Name] - see the [LICENSE](LICENSE) f
 ## Contact
 
 - Javier: [Your Email]
-- Project Link: [Link to your repository]
+- Project Link: [https://github.com/JaviD17/bioclick_backend]
 - Additional Contact Info: [e.g., Twitter, Website]
