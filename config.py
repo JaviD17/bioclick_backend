@@ -16,7 +16,7 @@ class Settings(BaseSettings):
 
     # Email Settings
     resend_api_key: str
-    from_email: str = "onboarding@resend.dev"
+    from_email: str = "info@bioclick.xyz"
     frontend_url: str = "http://localhost:3000"
 
     # Email Feature Flags
