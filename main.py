@@ -28,7 +28,7 @@ limiter = Limiter(key_func=get_remote_address)
 async def lifespan(app: FastAPI):
     """Application lifespan events"""
     # startup
-    print("🚀 Starting up BioTap API...")
+    print("🚀 Starting up BioClick API...")
     create_db_and_tables()
     print("✅ Database tables created successfully")
 
@@ -52,7 +52,7 @@ async def lifespan(app: FastAPI):
     yield
 
     # Shutdown
-    print("🛑 Shutting down BioTap API...")
+    print("🛑 Shutting down BioClick API...")
 
     # Stop the background scheduler
     if not settings.debug:
@@ -72,7 +72,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title=settings.app_name,
     debug=settings.debug,
-    description="BioTap built with FastAPI and SQLModel",
+    description="BioClick built with FastAPI and SQLModel",
     version="1.0.0",
     docs_url="/docs" if settings.debug else None,
     redoc_url="/redoc" if settings.debug else None,
@@ -149,7 +149,7 @@ app.include_router(admin.router)
 async def root(request: Request):
     """Root endpoint with rate limiting"""
     return {
-        "message": "Welcome to BioTap API",
+        "message": "Welcome to BioClick API",
         "version": "1.0.0",
         "docs": "/docs" if settings.debug else "Not available in production",
         "redoc": "/redoc" if settings.debug else "Not available in production",
